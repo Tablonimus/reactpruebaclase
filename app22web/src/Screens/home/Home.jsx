@@ -1,38 +1,36 @@
-import React from "react";
-import Detail from "../detail/Detail";
-import { Label, TextInput, Checkbox, Button } from "flowbite-react";
+import React, { useState } from "react";
+// import { Label, TextInput, Checkbox, Button } from "flowbite-react";
 
 export default function Home() {
+  const numeroStorage = JSON.parse(localStorage.getItem("numerito"));
+
+  const [input, setInput] = useState({});
+  const [numerito, setNumerito] = useState(numeroStorage.numero);
+
+  function sumar1(e) {
+    e.preventDefault();
+    const objetoAGuardar = {
+      numero: numerito + 1,
+    };
+
+    setNumerito(numerito + 1);
+    localStorage.setItem("numerito",JSON.stringify(objetoAGuardar) )
+    // setNumerito();
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-full  mt-5 ml-5">
       {/* ----------- */}
 
-      <form className="flex flex-col gap-4 w-96 border boreder-black">
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email1" value="Your email" />
-          </div>
-          <TextInput
-            id="email1"
-            type="email"
-            placeholder="name@flowbite.com"
-            required={true}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password1" value="Your password" />
-          </div>
-          <TextInput id="password1" type="password" required={true} />
-        </div>
-        <div className="flex items-center gap-2">
-          <Checkbox id="remember" />
-          <Label htmlFor="remember">Remember me</Label>
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
-
-      {/* ----------- */}
+      <div className="flex flex-col justify-center items-center bg-blue-500  w-96  font-bold">
+        <p className="text-5xl">Tu último numero de sesión fue el  {numerito}</p>
+        <button
+          className="bg-gray-300 rounded-lg p-5"
+          onClick={(e) => sumar1(e)}
+        >
+          sumar por 1
+        </button>
+      </div>
     </div>
   );
 }
