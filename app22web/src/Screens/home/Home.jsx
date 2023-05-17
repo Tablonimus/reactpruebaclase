@@ -1,36 +1,70 @@
-import React, { useState } from "react";
-// import { Label, TextInput, Checkbox, Button } from "flowbite-react";
+import React from "react";
+import "../../Styles/style.css"; //IMPORTAMOS LOS CSS ASÍ
+import banner from "../../Assets/Images/banner.png"; // a la imagen se la guarda en una variable
+import egg from "../../Assets/Images/egg.png"; // a la imagen se la guarda en una variable
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; //IMPORTO SWEET ALERT2
+import { Toast, HiFire } from "flowbite-react"; //importo componentes de Flowbite react
 
 export default function Home() {
-  const numeroStorage = JSON.parse(localStorage.getItem("numerito"));
+  const navigate = useNavigate();
 
-  const [input, setInput] = useState({});
-  const [numerito, setNumerito] = useState(numeroStorage.numero);
+  function loginHandler(e) {
+    e.preventDefault(); //prevenimos que se recargue
 
-  function sumar1(e) {
-    e.preventDefault();
-    const objetoAGuardar = {
-      numero: numerito + 1,
-    };
-
-    setNumerito(numerito + 1);
-    localStorage.setItem("numerito",JSON.stringify(objetoAGuardar) )
-    // setNumerito();
+    Swal.fire({
+      title: "¿Aceptas nuestros terminos y condiciones?",
+      text: "No te arrepentiras!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0DD90A",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Aceptar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          navigate("/pokemon");
+        }, 2000);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No puedes contiunar si no aceptas!",
+        });
+      }
+    });
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-full  mt-5 ml-5">
-      {/* ----------- */}
-
-      <div className="flex flex-col justify-center items-center bg-blue-500  w-96  font-bold">
-        <p className="text-5xl">Tu último numero de sesión fue el  {numerito}</p>
+    <div className="flex flex-col h-full items-center md:gap-16 lg:gap-10  p-5 ">
+      <img src={banner} alt="" className="w-56 md:w-96 lg:w-96" />
+      <form
+        id="formulario"
+        className="flex flex-col justify-center items-center w-72 h-72 lg:w-96 lg:h-96 rounded-full gap-16 bg-gray-300"
+        action="submit"
+        onSubmit={(e) => loginHandler(e)}
+      >
+        <input
+          id="user"
+          className="w-7/12 rounded-full bg-opacity-50 bg-[#FE3929] "
+          type="text"
+          placeholder="Usuario..."
+        />
         <button
-          className="bg-gray-300 rounded-lg p-5"
-          onClick={(e) => sumar1(e)}
+          type="submit"
+          className="flex items-center justify-center ring w-16 h-16 rounded-full bg-white hover:bg-[#FE3929]"
         >
-          sumar por 1
+          {" "}
+          <img src={egg} alt="" />{" "}
         </button>
-      </div>
+        <input
+          id="pass"
+          className="w-7/12 rounded-full bg-opacity-50 bg-[#A1A1A1]"
+          type="password"
+          placeholder="Contraseña..."
+        />
+      </form>
     </div>
   );
 }

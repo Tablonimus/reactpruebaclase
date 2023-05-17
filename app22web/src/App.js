@@ -16,7 +16,7 @@ export default function App() {
 
   //localstorage.getItem("clave") //debemos almacenarlo en una variable
   //esa variable debo convertirla a dato JS: y para eso usamos JSON.parse(variableCreada)
- // ejemplo en una sola linea : JSON.parse(localStorage.getItem("numerito"));
+  // ejemplo en una sola linea : JSON.parse(localStorage.getItem("numerito"));
   //localstorage.removeItem("clave") //se hace para eliminar algo del local storage
 
   if (localStorage.getItem("numerito")) {
@@ -28,15 +28,17 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <div id="login" className="flex flex-col h-screen justify-between">
+        <NavBar />
 
-      <Routes>
-        <Route path={"/"} element={<Home />} />
-        <Route path={"/pokemon"} element={<Profile />} />
-        <Route path={"/pokemon/:id"} element={<Detail />} />
-      </Routes>
+        <Routes>
+          <Route path={"/"} element={<Home />} />
+          <Route path={"/pokemon"} element={<Profile />} />
+          <Route path={"/pokemon/:id"} element={<Detail />} />
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
