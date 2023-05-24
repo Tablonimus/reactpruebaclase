@@ -2,7 +2,9 @@ export function saludar() {
   console.log("hola soy la api de tu proyecto");
 }
 
-export async function pokemonesPorPagina(numero) {
+export async function pedirPokemones(numero) {
+
+  if (!numero) numero = 400
   const data = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${numero}`);
 
   const jsondata = await data.json();

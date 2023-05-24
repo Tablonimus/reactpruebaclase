@@ -19,7 +19,7 @@ export default function NavBar() {
       fluid={true}
       rounded={true}
     >
-      <Navbar.Brand href="https://flowbite.com/">
+      <Navbar.Brand href="/pokemon">
         <img src={logoPikachu} className="mr-3 h-16" alt="Pokedex" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           Pokedex
@@ -54,13 +54,13 @@ export default function NavBar() {
         </Dropdown>
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars" active={true}>
-          Home
+        <Navbar.Link href="/pokemon/create" >
+          Crear Pokemon
         </Navbar.Link>
-        <Navbar.Link href="/navbars">About</Navbar.Link>
+        {/* <Navbar.Link href="/navbars">About</Navbar.Link>
         <Navbar.Link href="/navbars">Services</Navbar.Link>
         <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        <Navbar.Link href="/navbars">Contact</Navbar.Link> */}
       </Navbar.Collapse>
     </Navbar>
   );

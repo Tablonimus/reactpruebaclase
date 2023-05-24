@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Screens/home/Home";
 import Detail from "./Screens/detail/Detail";
 import Footer from "./Components/Footer/Footer";
-import Main from "./Screens/profile/Main";
+import Main from "./Screens/main/Main";
+import Create from "./Screens/create/Create";
 
 export default function App() {
   //localstorage.setItem("clave","valor") //el valor tiene que ser string
@@ -22,6 +23,7 @@ export default function App() {
           <Route path={"/"} element={<Home />} />
           <Route path={"/pokemon"} element={<Main />} />
           <Route path={"/pokemon/:id"} element={<Detail />} />
+          <Route path={"/pokemon/create"} element={<Create />} />
         </Routes>
 
         <Footer />
